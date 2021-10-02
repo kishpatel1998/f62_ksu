@@ -11,6 +11,12 @@ config DCACHE_WORD_ACCESS
 config INTERRUPTIBLE_SYNC
     bool "Support interruptible sync for Samsung Mobile Device"
 
+config DYNAMIC_FSYNC
+	bool "dynamic file sync control"
+	default n
+	help
+	An experimental file sync control using new power_suspend driver
+
 if BLOCK
 
 config FS_IOMAP
