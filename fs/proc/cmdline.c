@@ -18,14 +18,16 @@ extern int susfs_spoof_cmdline_or_bootconfig(struct seq_file *m);
 
 static int cmdline_proc_show(struct seq_file *m, void *v)
 {
+	seq_puts(m, new_command_line);
+	seq_putc(m, '\n');
+
 #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
 	if (!susfs_spoof_cmdline_or_bootconfig(m)) {
 		seq_putc(m, '\n');
 		return 0;
 	}
 #endif
-	seq_puts(m, new_command_line);
-	seq_putc(m, '\n');
+
 	return 0;
 }
 
