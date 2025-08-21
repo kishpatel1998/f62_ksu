@@ -5,6 +5,8 @@ RDIR="$(pwd)"
 export PLATFORM_VERSION=13
 export ARCH=arm64
 export ANDROID_MAJOR_VERSION=t
+export LLVM=1
+export LLVM_IAS=1
 MODEL="GalaxyF62"
 BUILD_KERNEL_VERSION="V3"
 
@@ -31,6 +33,10 @@ if [ ! -f ".requirements" ]; then
         python3 make sudo gcc g++ bc grep tofrodos python3-markdown libxml2-utils xsltproc zlib1g-dev python-is-python3 libc6-dev libtinfo6 \
         make repo cpio kmod openssl libelf-dev pahole libssl-dev --fix-missing && wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb && sudo dpkg -i libtinfo5_6.3-2ubuntu0.1_amd64.deb && touch .requirements
 fi
+
+# Define toolchain variables
+CLANG_DIR=$PWD/toolchain/neutron_18
+PATH=$CLANG_DIR/bin:$PATH
 
 #build dir
 if [ ! -d "${RDIR}/build" ]; then
